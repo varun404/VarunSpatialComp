@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 public class IntroNarrativeUIManager : MonoBehaviour
@@ -9,7 +8,11 @@ public class IntroNarrativeUIManager : MonoBehaviour
 
     [SerializeField]
     float delayBeforeNextLine = 1f;
-    
+
+
+    [SerializeField]
+    float delayAfterAllLines = 3f;
+
     [SerializeField]
     float fadeSpeed = 1.6f;
     
@@ -25,6 +28,8 @@ public class IntroNarrativeUIManager : MonoBehaviour
         }
         
         yield return StartCoroutine(StartNarrativeLinesEffect());
+        
+        yield return new WaitForSecondsRealtime(delayAfterAllLines);
 
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1, UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
@@ -52,8 +57,6 @@ public class IntroNarrativeUIManager : MonoBehaviour
             if (linesIndex < narrativeLinesInOrder.Length)
                 yield return new WaitForSecondsRealtime(delayBeforeNextLine);            
         } 
-
-        Debug.Log("Ended narrartive lines effect");
 
         yield break;
     }

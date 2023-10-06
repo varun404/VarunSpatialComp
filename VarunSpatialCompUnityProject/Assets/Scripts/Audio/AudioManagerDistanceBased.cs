@@ -25,18 +25,13 @@ public class AudioManagerDistanceBased : MonoBehaviour
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
-
     void AudioBeepEffect()
     {
         StartCoroutine(AudioEffectBasedOnDistance());
     }
+
+
+
 
     float numberOfTimesPerSecond;
     IEnumerator AudioEffectBasedOnDistance()
@@ -45,10 +40,9 @@ public class AudioManagerDistanceBased : MonoBehaviour
         while(true)
         {
             numberOfTimesPerSecond = instancesPerSecond_Distance_Ratio.Evaluate(distanceCalculator.CurrentDistance);
-            Debug.Log(numberOfTimesPerSecond);
             
             audioSource.PlayOneShot(audioSource.clip);
-            yield return new WaitForSecondsRealtime(1f / numberOfTimesPerSecond);        
+            yield return new WaitForSecondsRealtime(numberOfTimesPerSecond);        
             
         }
         

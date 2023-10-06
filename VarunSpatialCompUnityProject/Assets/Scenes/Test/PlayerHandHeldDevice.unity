@@ -500,7 +500,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 862257304}
-  - component: {fileID: 862257305}
   - component: {fileID: 862257306}
   m_Layer: 0
   m_Name: AudioManagerDistanceBased
@@ -524,44 +523,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &862257305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862257303}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dac4d6d916083e24196e659c7260fb1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceCalculator: {fileID: 627873113}
-  audioSource: {fileID: 11101146}
-  instancesPerSecond_Distance_Ratio:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 5
-      inSlope: -0.5555556
-      outSlope: -0.5555556
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 9
-      value: 0
-      inSlope: -0.5555556
-      outSlope: -0.5555556
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &862257306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,19 +541,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.1
-      value: 0.5
-      inSlope: 0.505618
-      outSlope: 0.505618
+      time: 1
+      value: 0.1
+      inSlope: 0.225
+      outSlope: 0.225
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 9
-      value: 5
-      inSlope: 0.505618
-      outSlope: 0.505618
+      time: 5
+      value: 1
+      inSlope: 0.225
+      outSlope: 0.225
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
