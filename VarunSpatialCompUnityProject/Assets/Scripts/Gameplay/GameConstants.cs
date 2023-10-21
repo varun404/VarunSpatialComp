@@ -4,12 +4,15 @@ using UnityEngine;
 
 public static class GameConstants
 {
+    public static GameObject playerGameObject;
+
+
     public enum GameState
     {
         Intro,
-        Lock1,
-        Lock2,
-        Lock3,
+        Puzzle1,
+        Puzzle2,
+        Puzzle3,
         End
     }
     static GameState currentGameState = GameState.Intro;

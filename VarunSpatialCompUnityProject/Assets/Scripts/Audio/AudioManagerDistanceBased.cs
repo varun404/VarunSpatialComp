@@ -5,9 +5,6 @@ using UnityEngine;
 public class AudioManagerDistanceBased : MonoBehaviour
 {
     [SerializeField]
-    DistanceCalculator distanceCalculator;
-
-    [SerializeField]
     AudioSource audioSource;
 
 
@@ -15,36 +12,61 @@ public class AudioManagerDistanceBased : MonoBehaviour
     AnimationCurve instancesPerSecond_Distance_Ratio;
 
 
+    [SerializeField]
+    float defaultIntervalBetweenAudioClip;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (distanceCalculator == null)
-            distanceCalculator = FindObjectOfType<DistanceCalculator>();
-
-        AudioBeepEffect();
+        
     }
 
 
-    void AudioBeepEffect()
+    public void StartAudioBeepEffect()
     {
         StartCoroutine(AudioEffectBasedOnDistance());
     }
 
 
+    public void StopAudioBeepEffect()
+    {
+        StopCoroutine(AudioEffectBasedOnDistance());
+    }
+
 
 
     float numberOfTimesPerSecond;
+    Vector3 projectedForward, directionToTarget;
+    float dotProduct;
     IEnumerator AudioEffectBasedOnDistance()
     {        
 
         while(true)
         {
-            numberOfTimesPerSecond = instancesPerSecond_Distance_Ratio.Evaluate(distanceCalculator.CurrentDistance);
-            
-            audioSource.PlayOneShot(audioSource.clip);
-            yield return new WaitForSecondsRealtime(numberOfTimesPerSecond);        
-            
+            projectedForward = Vector3.ProjectOnPlane(GameConstants.playerGameObject.transform.forward, Vector3.up);
+            directionToTarget = DistanceCalculator.targetPosition - DistanceCalculator.sourcePosition;
+
+            dotProduct = Vector3.Dot(projectedForward.normalized, directionToTarget.normalized);
+
+            //If angle between source forward and direction to target is atleast 30 degrees
+            //https://docs.unity3d.com/uploads/Main/CosineValues.png
+            if (dotProduct >= 0.8f)
+            {
+                numberOfTimesPerSecond = instancesPerSecond_Distance_Ratio.Evaluate(DistanceCalculator.CurrentDistance);
+
+                audioSource.PlayOneShot(audioSource.clip);
+
+                yield return new WaitForSecondsRealtime(numberOfTimesPerSecond);
+            }
+            else
+            {
+                audioSource.PlayOneShot(audioSource.clip);
+                yield return new WaitForSecondsRealtime(1f);
+            }
+                        
         }
         
     }
+
+
 }
