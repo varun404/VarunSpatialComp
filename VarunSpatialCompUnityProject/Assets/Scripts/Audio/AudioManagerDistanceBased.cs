@@ -15,10 +15,20 @@ public class AudioManagerDistanceBased : MonoBehaviour
     [SerializeField]
     float defaultIntervalBetweenAudioClip;
 
+
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        if(audioSource == null)
+        {
+            if (FindObjectOfType<AudioSource>() == null)
+            {
+                audioSource = new GameObject("RuntimeAudioSource").AddComponent<AudioSource>();
+            }
+            else
+                audioSource = FindObjectOfType<AudioSource>();
+        }
     }
 
 
@@ -52,7 +62,7 @@ public class AudioManagerDistanceBased : MonoBehaviour
             //https://docs.unity3d.com/uploads/Main/CosineValues.png
             if (dotProduct >= 0.8f)
             {
-                numberOfTimesPerSecond = instancesPerSecond_Distance_Ratio.Evaluate(DistanceCalculator.CurrentDistance);
+                numberOfTimesPerSecond = instancesPerSecond_Distance_Ratio.Evaluate(DistanceCalculator.currentDistance);
 
                 audioSource.PlayOneShot(audioSource.clip);
 

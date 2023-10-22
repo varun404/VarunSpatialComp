@@ -12,11 +12,13 @@ public class GameManager : MonoBehaviour
     public static Action<GameConstants.GameState> GameStateChanged;
 
 
+    [SerializeField]
+    Transform dummyTarget;
+
     // Start is called before the first frame update
     void Start()
     {
         GameConstants.playerGameObject = player;
-        DistanceCalculator.sourcePosition = GameConstants.playerGameObject.transform.position;
     }
 
 
@@ -24,7 +26,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DistanceCalculator.sourcePosition = player.transform.position;
+        DistanceCalculator.targetPosition = dummyTarget.position;
     }
 
 

@@ -1153,8 +1153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794edc4fd75485942ab9d1a40ff5c3e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sourceObject: {fileID: 11101144}
-  targetObject: {fileID: 1840441647}
 --- !u!4 &627873114
 Transform:
   m_ObjectHideFlags: 0
@@ -1783,7 +1781,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac4d6d916083e24196e659c7260fb1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceCalculator: {fileID: 627873113}
   audioSource: {fileID: 11101146}
   instancesPerSecond_Distance_Ratio:
     serializedVersion: 2
