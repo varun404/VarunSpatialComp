@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviour
     {
         DistanceCalculator.sourcePosition = player.transform.position;
         DistanceCalculator.targetPosition = dummyTarget.position;
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            FindObjectOfType<AudioManagerDistanceBased>().StartAudioBeepEffect();
+        }
     }
 
 

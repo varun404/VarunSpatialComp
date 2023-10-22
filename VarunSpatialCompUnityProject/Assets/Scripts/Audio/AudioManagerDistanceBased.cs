@@ -58,6 +58,8 @@ public class AudioManagerDistanceBased : MonoBehaviour
 
             dotProduct = Vector3.Dot(projectedForward.normalized, directionToTarget.normalized);
 
+            Debug.Log(dotProduct);
+
             //If angle between source forward and direction to target is atleast 30 degrees
             //https://docs.unity3d.com/uploads/Main/CosineValues.png
             if (dotProduct >= 0.8f)
