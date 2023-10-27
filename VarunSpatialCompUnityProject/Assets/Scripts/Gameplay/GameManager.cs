@@ -25,26 +25,7 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        DistanceCalculator.sourcePosition = player.transform.position;
-        DistanceCalculator.targetPosition = dummyTarget.position;
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            FindObjectOfType<AudioManagerDistanceBased>().StartAudioBeepEffect();
-        }
+    {        
     }
 
-
-
-    public void SetGameState(GameConstants.GameState newGameState)
-    {
-        if (newGameState == GameConstants.GetCurrentGameState())
-            return;
-
-        GameConstants.SetGameState(newGameState);
-
-        //Set New Game State
-        GameStateChanged?.Invoke(newGameState);
-    }
 }

@@ -15,7 +15,7 @@ public class AudioManagerDistanceBased : MonoBehaviour
     [SerializeField]
     float defaultIntervalBetweenAudioClip;
 
-
+    bool startDistanceBasedBeep = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -34,12 +34,14 @@ public class AudioManagerDistanceBased : MonoBehaviour
 
     public void StartAudioBeepEffect()
     {
+        startDistanceBasedBeep = true;
         StartCoroutine(AudioEffectBasedOnDistance());
     }
 
 
     public void StopAudioBeepEffect()
     {
+        startDistanceBasedBeep = false;
         StopCoroutine(AudioEffectBasedOnDistance());
     }
 
@@ -51,7 +53,7 @@ public class AudioManagerDistanceBased : MonoBehaviour
     IEnumerator AudioEffectBasedOnDistance()
     {        
 
-        while(true)
+        while(startDistanceBasedBeep)
         {
             projectedForward = Vector3.ProjectOnPlane(GameConstants.playerGameObject.transform.forward, Vector3.up);
             directionToTarget = DistanceCalculator.targetPosition - DistanceCalculator.sourcePosition;
