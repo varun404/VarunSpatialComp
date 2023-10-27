@@ -18,13 +18,21 @@ public class PlayerHandHeldDevice : MonoBehaviour
 
 
     [SerializeField]
-    PlayerHandHeldDeviceTargets tutorialObject, object1, object2, object3;
+    PlayerHandHeldDeviceTargets object1, object2;
+
+
+    static PlayerHandHeldDevice currentTarget;
+
+
+
+    Vector3 currentTargetLocation;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        DistanceCalculator.sourcePosition = transform.position;
+        GameConstants.playerGameObject = transform.gameObject;
     }
 
     // Update is called once per frame
@@ -34,6 +42,10 @@ public class PlayerHandHeldDevice : MonoBehaviour
         {
             ChangeDeviceTarget(0);
         }
+
+        DistanceCalculator.sourcePosition = transform.position;
+        DistanceCalculator.targetPosition = currentTargetLocation;
+
     }
 
 
@@ -47,27 +59,33 @@ public class PlayerHandHeldDevice : MonoBehaviour
 
         currentDeviceTarget = tempTargetVar;
 
+        FindObjectOfType<AudioManagerDistanceBased>().StopAudioBeepEffect();
+
         switch (currentDeviceTarget)
         {
             case DeviceTargets.None:
                 FindObjectOfType<AudioManagerDistanceBased>().StopAudioBeepEffect();                
                 break;                
             case DeviceTargets.Tutorial:
-                DistanceCalculator.targetPosition = tutorialObject.targetTransform.position;
-                FindObjectOfType<AudioManagerDistanceBased>().StartAudioBeepEffect();
+                //DistanceCalculator.targetPosition = tutorialObject.targetTransform.position;
+                //FindObjectOfType<AudioManagerDistanceBased>().StartAudioBeepEffect();
                 break;
             case DeviceTargets.Object1:
                 DistanceCalculator.targetPosition = object1.targetTransform.position;
+                currentTargetLocation = DistanceCalculator.targetPosition;
+
                 FindObjectOfType<AudioManagerDistanceBased>().StartAudioBeepEffect();
                 break;
             case DeviceTargets.Object2:
                 DistanceCalculator.targetPosition = object2.targetTransform.position;
+                currentTargetLocation = DistanceCalculator.targetPosition;
+
                 FindObjectOfType<AudioManagerDistanceBased>().StartAudioBeepEffect();
                 break;
             case DeviceTargets.Object3:
-                DistanceCalculator.targetPosition = object3.targetTransform.position;
-                FindObjectOfType<AudioManagerDistanceBased>().StartAudioBeepEffect();
-                break;                          
+                //DistanceCalculator.targetPosition = object3.targetTransform.position;
+                //FindObjectOfType<AudioManagerDistanceBased>().StartAudioBeepEffect();
+                break;                 
         }
     }
 }

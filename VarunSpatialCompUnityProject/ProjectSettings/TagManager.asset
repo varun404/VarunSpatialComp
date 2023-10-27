@@ -3,12 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Object1
+  - Object2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - FloorCam
   - Water
   - UI
   - 

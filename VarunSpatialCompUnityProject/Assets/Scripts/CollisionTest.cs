@@ -8,32 +8,30 @@ public class CollisionTest : MonoBehaviour
     [SerializeField]
     Material triggerenterMaterial, triggerExitMaterial;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    WallButtons relevantWallButton;
+
+
+    [SerializeField]
+    string objectTag;
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag(objectTag))
         {
             GetComponent<MeshRenderer>().sharedMaterial = triggerenterMaterial;
+            relevantWallButton.SetSelectedMaterial();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag(objectTag))
         {
             GetComponent<MeshRenderer>().sharedMaterial = triggerExitMaterial;
+            relevantWallButton.SetDefaultMaterial();
         }
     }
 }
