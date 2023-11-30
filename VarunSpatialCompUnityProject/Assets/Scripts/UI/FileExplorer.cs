@@ -7,9 +7,9 @@ public class FileExplorer : MonoBehaviour
     [SerializeField]
     GameObject fileExplorerWindow;
 
-
-    //Present ID
-    //Decryption key
+    
+    //Delete - Present ID + Decryption key
+    
 
 
 
