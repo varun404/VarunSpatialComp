@@ -10,9 +10,8 @@ public static class GameConstants
     public enum GameState
     {
         Intro,
-        Puzzle1,
-        Puzzle2,
-        Puzzle3,
+        Puzzle1Solved,
+        Puzzle2Solved,        
         End
     }
     static GameState currentGameState = GameState.Intro;

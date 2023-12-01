@@ -21,15 +21,12 @@ public class PuzzleManager : MonoBehaviour
     {
         switch (puzzle)
         {           
-            case GameConstants.GameState.Puzzle1:
+            case GameConstants.GameState.Puzzle1Solved:
                 FindObjectOfType<Puzzle1Year>().Start();
                 break;
 
-            case GameConstants.GameState.Puzzle2:                
-                break;
-
-            case GameConstants.GameState.Puzzle3:
-                break;                        
+            case GameConstants.GameState.Puzzle2Solved:                
+                break;                       
         }
     }
 }
