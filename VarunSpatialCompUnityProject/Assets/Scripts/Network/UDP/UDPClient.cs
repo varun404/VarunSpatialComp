@@ -1,43 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading;
 using UnityEngine;
 
 public class UDPClient : MonoBehaviour
 {
-    private const int listenPort = 11000;
-    UdpClient listener = new UdpClient(listenPort);
-    IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, listenPort);
-    void Start()
+    private UdpClient udpClient;
+    private IPEndPoint remoteEndPoint;
+
+    private void Start()
     {
-        Thread thread = new Thread(Receive);
-        thread.Start();
+        // Example: Start the UDP client and connect to the remote server
+        StartUDPClient("172.26.27.154", 5555);
     }
 
-    private void Receive()
+    private void StartUDPClient(string ipAddress, int port)
     {
-        try
-        {
-            while (true)
-            {
-                print("Waiting for broadcast");
-                byte[] bytes = listener.Receive(ref groupEP);
+        udpClient = new UdpClient();
+        remoteEndPoint = new IPEndPoint(IPAddress.Parse(ipAddress), port);
 
-                print($"Received broadcast from {groupEP} :");
-                print($" {Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
+        // Start receiving data asynchronously
+        udpClient.BeginReceive(ReceiveData, null);
 
-            }
-        }
-        catch (SocketException e)
-        {
-            print(e);
-        }
+        // Send a message to the server
+        SendData("Hello, server!");
     }
-    private void OnDestroy()
+
+    private void ReceiveData(IAsyncResult result)
     {
-        listener.Close();
+        byte[] receivedBytes = udpClient.EndReceive(result, ref remoteEndPoint);
+        string receivedMessage = System.Text.Encoding.UTF8.GetString(receivedBytes);
+
+        Debug.Log("Received from server: " + receivedMessage);
+
+        // Continue receiving data asynchronously
+        udpClient.BeginReceive(ReceiveData, null);
+    }
+
+    private void SendData(string message)
+    {
+        byte[] sendBytes = System.Text.Encoding.UTF8.GetBytes(message);
+
+        // Send the message to the server
+        udpClient.Send(sendBytes, sendBytes.Length, remoteEndPoint);
+
+        Debug.Log("Sent to server: " + message);
     }
 }
