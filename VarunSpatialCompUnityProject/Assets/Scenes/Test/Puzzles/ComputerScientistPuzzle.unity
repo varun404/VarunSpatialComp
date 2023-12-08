@@ -894,7 +894,7 @@ GameObject:
   - component: {fileID: 438760539}
   - component: {fileID: 438760540}
   m_Layer: 0
-  m_Name: UDPClient
+  m_Name: UDPServer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -927,8 +927,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d82053a4d0e1345b0e9881babc3704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetIPAddress: 128.237.82.1
-  portNumber: 8751
 --- !u!1 &457574968
 GameObject:
   m_ObjectHideFlags: 0
