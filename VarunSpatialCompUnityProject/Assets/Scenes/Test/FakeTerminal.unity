@@ -123,9 +123,84 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &8672552 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+    type: 3}
+  m_PrefabInstance: {fileID: 8090101214083134662}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d568a2fcf6ea64b86d2bb24daed207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!108 &436044365 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 5402595819908408728, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+    type: 3}
+  m_PrefabInstance: {fileID: 8090101214083134662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &554885820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 554885821}
+  - component: {fileID: 554885822}
+  m_Layer: 0
+  m_Name: CompPuzzleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &554885821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554885820}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &554885822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554885820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ff24b098fcf8245b46d668d29f76c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fakeTerminal: {fileID: 8672552}
+  whatAfterPasswordAuthenticated:
+  - 
+  - Whats your favourite book?
+  - 
+  whatAfterBookAuthenticated:
+  - 
+  - Whats the solution to the math problem?
+  - 
+  whatAfterMathProblemAuthenticated:
+  - 
+  - <color=green>Welcome back  Dr. Lusso!</color>
+  - 
+--- !u!224 &1082374743 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8090101214214043320, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
     type: 3}
   m_PrefabInstance: {fileID: 8090101214083134662}
   m_PrefabAsset: {fileID: 0}
@@ -404,6 +479,262 @@ Light:
     type: 3}
   m_PrefabInstance: {fileID: 8090101214083134662}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1941591267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1941591268}
+  - component: {fileID: 1941591271}
+  - component: {fileID: 1941591270}
+  - component: {fileID: 1941591269}
+  m_Layer: 5
+  m_Name: FakeTerminalTextOG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1941591268
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941591267}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1082374743}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1450, y: 600}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1941591269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941591267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d568a2fcf6ea64b86d2bb24daed207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  custom_Functions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2090984522}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: AllLightsOnOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2090984522}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: DirectionalLightOnOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  custom_Inputs:
+  - text_Input:
+    - /LIGHTS
+    - /lights
+  - text_Input:
+    - /DIRECTIONAL
+    - /directional
+  custom_Texts:
+  - text_Input:
+    - 
+    - '        The script has called the <color=red>first</color> external function'
+    - 
+  - text_Input:
+    - 
+    - '        The script has called the <color=red>second</color> external function'
+    - 
+  admin_RequestLogin: 1
+  admin_Password: FakeTerminal
+  admin_AutoLogOut: 1
+  text_ForceCapsLock: 0
+  key_TurnOn: 101
+  key_UseKeyToShutDown: 0
+  key_ShutDown: 306
+  terminal_PoVOffset: {x: 0, y: 0, z: 0.5}
+  terminal_ActivationTransitionSpeed: 1
+  terminal_ShutDownTransitionSpeed: 3
+  player_CharController: {fileID: 0}
+  player_Camera: {fileID: 1370886380}
+  terminal_MaxActivationDistance: 3
+  inputs_Help:
+  - /HELP
+  - /help
+  inputs_Clear:
+  - /CLEAR
+  - /clear
+  inputs_Shutdown:
+  - /SHUTDOWN
+  - /shutdown
+  text_Intro:
+  - FAKE TERMINAL by <color=green>Procedural Imagination</color>
+  - 'Author: <color=green>Matteo Lusso</color>'
+  - <i>This is an example of an in-game fake terminal</i>
+  text_Error:
+  - 
+  - '        Invalid input.'
+  - '        Use <color=blue>/HELP</color> to see the basic commands list.'
+  - 
+  text_Help:
+  - 
+  - '        Basic commands list:'
+  - 
+  - '                <color=white>/CLEAR</color>'
+  - '                <color=white>/LIGHTS</color>'
+  - '                <color=white>/DIRECTIONAL</color>'
+  - 
+  text_AccessDenied:
+  - 
+  - '        <color=red><i>Access Denied</i></color>'
+  - 
+  text_AccessGranted:
+  - 
+  - '        <color=green><i>Access Granted</i></color>'
+  - 
+  text_ShutDownKey:
+  - '        To shut down the terminal, press the button:'
+  - 
+  - '                <color=white>Left Control</color>'
+  - 
+  text_ShutDownCommand:
+  - '        To shutdown the terminal, use the command:'
+  - 
+  - '                <color=white>/SHUTDOWN</color>'
+  - 
+  intro_TimeToPrintLine: 0.5
+  text_MaxStringsOnScreen: 27
+  text_MaxCharsInString: 200
+  cursor_Char: 9608
+  cursor_BlinkingTime: 0.5
+--- !u!114 &1941591270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941591267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.6117647, b: 0, a: 0.47058824}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 25
+    m_Alignment: 0
+    m_AlignByGeometry: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 0.8
+  m_Text: 'FAKE TERMINAL
+
+    PLACEHOLDER TEXT'
+--- !u!222 &1941591271
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941591267}
+  m_CullTransparentMesh: 0
+--- !u!1 &1974854972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1974854974}
+  - component: {fileID: 1974854973}
+  m_Layer: 0
+  m_Name: StrippedFakeTerminal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1974854973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974854972}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f6a8a1c9ec04649b00541d20a46058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFakeTerminalActive: 0
+  custom_Inputs: []
+  admin_Password: 
+  inputs_Clear: []
+  text_Error: []
+  text_AccessDenied: []
+  text_AccessGranted: []
+  text_MaxStringsOnScreen: 0
+  text_MaxCharsInString: 0
+  cursor_Char: 564
+  cursor_BlinkingTime: 0
+--- !u!4 &1974854974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974854972}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2090984521
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +751,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2090984522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,6 +791,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1627320792964964206, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692206079766663804, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: key_TurnOn
@@ -473,12 +814,12 @@ PrefabInstance:
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: admin_Password
-      value: FakeTerminal
+      value: 12/15/2023
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: admin_AutoLogOut
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
@@ -493,12 +834,17 @@ PrefabInstance:
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: text_Help.Array.size
-      value: 7
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
+      propertyPath: text_Intro.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: custom_Texts.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
@@ -513,12 +859,22 @@ PrefabInstance:
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: custom_Inputs.Array.size
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
+      propertyPath: text_Intro.Array.data[0]
+      value: <color=green>Who's using the computer?</color>
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
+      propertyPath: text_Intro.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: custom_Functions.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
@@ -538,28 +894,27 @@ PrefabInstance:
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: custom_Texts.Array.data[0].text_Input.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: custom_Texts.Array.data[1].text_Input.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: custom_Inputs.Array.data[0].text_Input.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: custom_Inputs.Array.data[1].text_Input.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: custom_Texts.Array.data[0].text_Input.Array.data[1]
-      value: '        The script has called the <color=red>first</color> external
-        function'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
@@ -570,12 +925,12 @@ PrefabInstance:
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: custom_Inputs.Array.data[0].text_Input.Array.data[0]
-      value: /LIGHTS
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: custom_Inputs.Array.data[0].text_Input.Array.data[1]
-      value: /lights
+      value: What's your favourite book?
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
@@ -590,12 +945,12 @@ PrefabInstance:
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: custom_Functions.Array.data[0].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: custom_Functions.Array.data[1].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
@@ -649,9 +1004,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704901, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090101212528704901, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 8090101212528704902, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8090101213781867746, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
       propertyPath: m_Name
@@ -719,7 +1084,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8090101214214043320, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1941591268}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7692206079766663804, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
@@ -796,3 +1165,5 @@ SceneRoots:
   - {fileID: 8090101214083134662}
   - {fileID: 1370886381}
   - {fileID: 2090984523}
+  - {fileID: 1974854974}
+  - {fileID: 554885821}

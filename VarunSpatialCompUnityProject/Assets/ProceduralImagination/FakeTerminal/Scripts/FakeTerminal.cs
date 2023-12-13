@@ -3,9 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System;
 
 public class FakeTerminal : MonoBehaviour
 {
+
+    public static Action OnPasswordAuthenticated, OnBookAuthenticated, OnMathProblemAuthenticated;
+
+
+
+
+
+
+
+
     //public int custom_FunctionsNumber = 0;
     [SerializeField]
     public UnityEvent[] custom_Functions;
@@ -511,7 +522,7 @@ public class FakeTerminal : MonoBehaviour
 
         if(!logged && admin_RequestLogin)
         {
-            lineIntro = "Insert password: ";
+            lineIntro = "Insert password (Best day of your life!): ";
         }
         else if(logged && admin_RequestLogin)
         {
@@ -651,6 +662,8 @@ public class FakeTerminal : MonoBehaviour
         {
             AddLineToList(line);
         }
+
+        OnPasswordAuthenticated?.Invoke();
     }
 
     private void PrintAccessNegate()
@@ -671,7 +684,7 @@ public class FakeTerminal : MonoBehaviour
     
     //----//
 
-    private void AddLineToList(string newLine)
+    public void AddLineToList(string newLine)
     {
         outputText.Add(newLine);
         UpdateLineIndex();
