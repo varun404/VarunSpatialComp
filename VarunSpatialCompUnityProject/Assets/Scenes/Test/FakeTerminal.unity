@@ -529,6 +529,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d568a2fcf6ea64b86d2bb24daed207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bookQuestionAnswered: 0
+  mathFormulaAnswered: 0
+  correctBookName: 
+  correctMathFormulaAnswer: 
+  text_CorrectAnswer: []
   custom_Functions:
   - m_PersistentCalls:
       m_Calls:
@@ -818,6 +823,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
+      propertyPath: correctBookName
+      value: Book
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
       propertyPath: admin_AutoLogOut
       value: 0
       objectReference: {fileID: 0}
@@ -838,8 +848,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
+      propertyPath: text_Error.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
       propertyPath: text_Intro.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
+      propertyPath: inputs_Help.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
@@ -858,8 +878,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
+      propertyPath: correctMathFormulaAnswer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
       propertyPath: custom_Inputs.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
+      propertyPath: text_Error.Array.data[1]
+      value: ' <color=red>       Invalid input.</color>'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
+      propertyPath: text_Error.Array.data[2]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
@@ -883,6 +918,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}
+      propertyPath: text_CorrectAnswer.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
       propertyPath: text_AccessDenied.Array.data[1]
       value: '        <color=red><i>Access Denied</i></color>'
       objectReference: {fileID: 0}
@@ -890,6 +930,11 @@ PrefabInstance:
         type: 3}
       propertyPath: text_AccessNegate.Array.data[1]
       value: '        <color=red><i>Access Denied</i></color>'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
+        type: 3}
+      propertyPath: text_CorrectAnswer.Array.data[1]
+      value: '        <color=green><i>Correct!</i></color>'
       objectReference: {fileID: 0}
     - target: {fileID: 8090101212528704900, guid: 6d765bc02f6764e43a99ddf8c802fbfb,
         type: 3}

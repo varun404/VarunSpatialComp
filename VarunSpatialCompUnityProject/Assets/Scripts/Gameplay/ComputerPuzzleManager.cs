@@ -42,9 +42,6 @@ public class ComputerPuzzleManager : MonoBehaviour
     public string[] whatAfterMathProblemAuthenticated;
     void OnMathProblemAuthenticated()
     {
-        foreach (string line in whatAfterMathProblemAuthenticated)
-        {
-            fakeTerminal.AddLineToList(line);
-        }
+        fakeTerminal.AddLineToList("Welcome Dr. Lusso!");
     }
 }

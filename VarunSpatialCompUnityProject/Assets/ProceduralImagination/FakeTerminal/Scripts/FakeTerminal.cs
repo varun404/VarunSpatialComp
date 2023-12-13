@@ -9,9 +9,10 @@ public class FakeTerminal : MonoBehaviour
 {
 
     public static Action OnPasswordAuthenticated, OnBookAuthenticated, OnMathProblemAuthenticated;
-
-
-
+    public bool bookQuestionAnswered, mathFormulaAnswered;
+    public string correctBookName;
+    public string correctMathFormulaAnswer;
+    public string[] text_CorrectAnswer;
 
 
 
@@ -168,6 +169,8 @@ public class FakeTerminal : MonoBehaviour
     private Vector3 oldPlayerPoVPosition;
     
     private Quaternion oldPlayerPoVRotation;
+
+
     //  The player's camera has to return in its original position when the terminal is shut down.
 
     void Start()
@@ -335,18 +338,52 @@ public class FakeTerminal : MonoBehaviour
             }
             else if ((c == '\n') || (c == '\r')) // Has enter/return been pressed?
             {
-                if(outputText[actualLine].Contains("" + cursor_Char))
+
+                if (outputText[actualLine].Contains("" + cursor_Char))
                 {
                     string temp = "";
-                    foreach(char letter in outputText[actualLine])
+                    foreach (char letter in outputText[actualLine])
                     {
-                        if(letter != cursor_Char)
-                        temp += letter;
+                        if (letter != cursor_Char)
+                            temp += letter;
                     }
                     outputText[actualLine] = temp;
                 }
 
-                if(!logged && admin_RequestLogin)
+                //If user is authenticated
+                if (logged)
+                {
+
+                    //If book answered
+                    if (!bookQuestionAnswered)
+                    {
+
+                        if (outputText[actualLine].Replace("" + cursor_Char, "").Length > 0
+                            && outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == correctBookName)
+                        {
+                            PrintTextForCorrectAnswer();
+                            bookQuestionAnswered = true;
+                            OnBookAuthenticated?.Invoke();
+                        }
+                    }
+
+
+                    //All done
+                    if (!mathFormulaAnswered)
+                    {
+                        if (outputText[actualLine].Replace("" + cursor_Char, "").Length > 0 &&
+                            outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == correctMathFormulaAnswer)
+                        {
+                            PrintTextForCorrectAnswer();
+                            mathFormulaAnswered = true;
+                            OnMathProblemAuthenticated?.Invoke();
+                        }
+
+                    }
+                }                                
+
+
+                if (!logged && admin_RequestLogin)
                 {
                     if(text_ForceCapsLock)
                     {
@@ -356,7 +393,8 @@ public class FakeTerminal : MonoBehaviour
                     if(outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == admin_Password)
                     {
                         logged = true;
-                        PrintAccessGranted();
+                        PrintAccessGranted();                        
+
                     }
                     else
                     {
@@ -368,7 +406,7 @@ public class FakeTerminal : MonoBehaviour
                     bool printError = true;
 
                     if(outputText[actualLine].Replace("" + cursor_Char, "").Length > lineIntro.Length)
-                    {
+                    {                        
                         //----//
 
                         // ADD HERE NEW CUSTOM COMMANDS
@@ -414,17 +452,17 @@ public class FakeTerminal : MonoBehaviour
 
                         //----//
 
-                        foreach(string input_Help in inputs_Help)
-                        {
-                            if(outputText[actualLine].Length >= lineIntro.Length)
-                            {
-                                if(outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == input_Help)
-                                {
-                                    printError = false;
-                                    PrintHelp();
-                                }
-                            }
-                        }
+                        //foreach(string input_Help in inputs_Help)
+                        //{
+                        //    if(outputText[actualLine].Length >= lineIntro.Length)
+                        //    {
+                        //        if(outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == input_Help)
+                        //        {
+                        //            printError = false;
+                        //            PrintHelp();
+                        //        }
+                        //    }
+                        //}
 
                         //----//
 
@@ -633,28 +671,39 @@ public class FakeTerminal : MonoBehaviour
         }
     }
 
-    private void PrintHelp()
+    //private void PrintHelp()
+    //{
+    //    foreach(string line in text_Help)
+    //    {
+    //        AddLineToList(line);
+    //    }
+
+    //    if(key_UseKeyToShutDown)
+    //    {
+    //        foreach(string line in text_ShutDownKey)
+    //        {
+    //            AddLineToList(line);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        foreach(string line in text_ShutDownCommand)
+    //        {
+    //            AddLineToList(line);
+    //        }
+    //    }
+    //}  
+
+
+
+    void PrintTextForCorrectAnswer()
     {
-        foreach(string line in text_Help)
+        foreach (var line in text_CorrectAnswer)
         {
             AddLineToList(line);
         }
+    }
 
-        if(key_UseKeyToShutDown)
-        {
-            foreach(string line in text_ShutDownKey)
-            {
-                AddLineToList(line);
-            }
-        }
-        else
-        {
-            foreach(string line in text_ShutDownCommand)
-            {
-                AddLineToList(line);
-            }
-        }
-    }  
 
     private void PrintAccessGranted()
     {
