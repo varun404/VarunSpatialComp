@@ -9,6 +9,11 @@ public class UDPServer : MonoBehaviour
     private UdpClient udpServer;
     private IPEndPoint remoteEndPoint;
 
+    public static Action<string> OnReceivedUpdateFromClient;
+
+
+
+
     private void Start()
     {
         // Example: Start the UDP server on port 5555
@@ -32,7 +37,7 @@ public class UDPServer : MonoBehaviour
         string receivedMessage = System.Text.Encoding.UTF8.GetString(receivedBytes);
 
         Debug.Log("Received from client: " + receivedMessage);
-
+        OnReceivedUpdateFromClient?.Invoke(receivedMessage);
         // Process the received data
 
         // Continue receiving data asynchronously
