@@ -5,32 +5,25 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System;
 
-public class FakeTerminal : MonoBehaviour
+public class FakeTerminalMainCoputer : MonoBehaviour
 {
-
-    public static Action OnPasswordAuthenticated, OnBookAuthenticated, OnMathProblemAuthenticated;
-    public bool bookQuestionAnswered, mathFormulaAnswered;
-    public string correctBookName;
-    public string correctMathFormulaAnswer;
-    public string[] text_CorrectAnswer;
-
-
-
-
 
     //public int custom_FunctionsNumber = 0;
     [SerializeField]
     public UnityEvent[] custom_Functions;
-    
-    [Space][Space]
+
+    [Space]
+    [Space]
 
     public List<CustomText> custom_Inputs;
 
-    [Space][Space]
+    [Space]
+    [Space]
 
     public List<CustomText> custom_Texts;
 
-    [Space][Space]
+    [Space]
+    [Space]
 
     public bool admin_RequestLogin;
     public string admin_Password;
@@ -71,13 +64,13 @@ public class FakeTerminal : MonoBehaviour
 
     ///INSERT HERE OTHER STRING[] INPUTS
 
-        //  EXAMPLE:
+    //  EXAMPLE:
 
-        //  [...]
-        //
-        //   public string[] inputs_Example;
-        //
-        //   [...]
+    //  [...]
+    //
+    //   public string[] inputs_Example;
+    //
+    //   [...]
 
     //----//
 
@@ -96,33 +89,33 @@ public class FakeTerminal : MonoBehaviour
     //  If you want to add a new function,
     //  you can create a new string[] array and change text through the editor...
 
-        //  EXAMPLE:
-    
-        //  [...]
-        //
-        //  public string[] text_ShutDownCommand;
-        //
-        //  [...]
+    //  EXAMPLE:
+
+    //  [...]
+    //
+    //  public string[] text_ShutDownCommand;
+    //
+    //  [...]
 
     //  or manually add strings in your custom function.
 
-        //  EXAMPLE:
-    
-        //  [...]
-        //
-        //  void CustomFunction()
-        //  {
-        //
-        //      [...]
-        //
-        //      AddLineToList("EXAMPLE LINE 1");
-        //      AddLineToList("EXAMPLE LINE 2");
-        //
-        //      [...]
-        //
-        //  }
-        //
-        //  [...]
+    //  EXAMPLE:
+
+    //  [...]
+    //
+    //  void CustomFunction()
+    //  {
+    //
+    //      [...]
+    //
+    //      AddLineToList("EXAMPLE LINE 1");
+    //      AddLineToList("EXAMPLE LINE 2");
+    //
+    //      [...]
+    //
+    //  }
+    //
+    //  [...]
 
     //----//
 
@@ -167,7 +160,7 @@ public class FakeTerminal : MonoBehaviour
     private bool logged;
 
     private Vector3 oldPlayerPoVPosition;
-    
+
     private Quaternion oldPlayerPoVRotation;
 
 
@@ -176,12 +169,12 @@ public class FakeTerminal : MonoBehaviour
     void Start()
     {
 
-        if(admin_Password == "") // Default admin_Password is 12345.
+        if (admin_Password == "") // Default admin_Password is 12345.
         {
             admin_Password = "12345"; // It's also the combination on my luggage... https://www.youtube.com/watch?v=a6iW-8xPw3k
         }
-        
-        if(("" + cursor_Char) == " ")
+
+        if (("" + cursor_Char) == " ")
         {
             cursor_Char = '█';
         }
@@ -211,12 +204,12 @@ public class FakeTerminal : MonoBehaviour
 
     void LateUpdate()
     {
-        if(admin_RequestLogin)
+        if (admin_RequestLogin)
         {
             key_UseKeyToShutDown = true;
         }
 
-        if(Input.GetKeyDown(key_TurnOn) && (this.transform.position - player_Camera.transform.position).magnitude < terminal_MaxActivationDistance && terminalIsIdling)
+        if (Input.GetKeyDown(key_TurnOn) && (this.transform.position - player_Camera.transform.position).magnitude < terminal_MaxActivationDistance && terminalIsIdling)
         {
             StopCoroutine("TerminalIdlingCursor");
             StopCoroutine("ExitTerminalTransition");
@@ -230,14 +223,14 @@ public class FakeTerminal : MonoBehaviour
             StartCoroutine("TerminalRunningCursor");
         }
 
-        if(lockCamera)
+        if (lockCamera)
         {
-            if(player_CharController != null)
+            if (player_CharController != null)
             {
                 player_CharController.enabled = false;
             }
 
-            if(!oldPositionSaved)
+            if (!oldPositionSaved)
             {
                 oldPlayerPoVPosition = player_Camera.transform.position;
                 oldPlayerPoVRotation = player_Camera.transform.rotation;
@@ -248,22 +241,22 @@ public class FakeTerminal : MonoBehaviour
             player_Camera.transform.position = Vector3.Lerp(player_Camera.transform.position, this.transform.position + terminal_PoVOffset, terminal_ActivationTransitionSpeed * Time.deltaTime);
             player_Camera.transform.rotation = Quaternion.Lerp(player_Camera.transform.rotation, this.transform.rotation, terminal_ActivationTransitionSpeed * Time.deltaTime);
 
-            if(!terminalStarting && terminalIsRunning)
+            if (!terminalStarting && terminalIsRunning)
             {
                 TerminalInput();
             }
 
-            if(text_ForceCapsLock)
-                {
-                    admin_Password = admin_Password.ToUpper();
-                }
-                else
-                {
-                    admin_Password = originalPassword;
-                }
+            if (text_ForceCapsLock)
+            {
+                admin_Password = admin_Password.ToUpper();
             }
+            else
+            {
+                admin_Password = originalPassword;
+            }
+        }
 
-        if((key_UseKeyToShutDown || !logged) && Input.GetKeyDown(key_ShutDown) && terminalIsRunning)
+        if ((key_UseKeyToShutDown || !logged) && Input.GetKeyDown(key_ShutDown) && terminalIsRunning)
         {
             ShutdownTerminal();
         }
@@ -275,7 +268,7 @@ public class FakeTerminal : MonoBehaviour
     {
         lockCamera = false;
 
-        while(player_Camera.transform.position != oldPlayerPoVPosition)
+        while (player_Camera.transform.position != oldPlayerPoVPosition)
         {
             player_Camera.transform.position = Vector3.Lerp(player_Camera.transform.position, oldPlayerPoVPosition, terminal_ShutDownTransitionSpeed * Time.deltaTime);
             player_Camera.transform.rotation = Quaternion.Lerp(player_Camera.transform.rotation, oldPlayerPoVRotation, terminal_ShutDownTransitionSpeed * Time.deltaTime);
@@ -288,7 +281,7 @@ public class FakeTerminal : MonoBehaviour
 
         oldPositionSaved = false;
 
-        if(player_CharController != null)
+        if (player_CharController != null)
         {
             player_CharController.enabled = true;
         }
@@ -306,7 +299,7 @@ public class FakeTerminal : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
 
-        if(admin_AutoLogOut)
+        if (admin_AutoLogOut)
         {
             logged = false;
         }
@@ -326,11 +319,11 @@ public class FakeTerminal : MonoBehaviour
             {
                 if (outputText[actualLine].Length > lineIntro.Length)
                 {
-                    if(outputText[actualLine].Contains("" + cursor_Char) && outputText[actualLine].Length > lineIntro.Length + 1)
+                    if (outputText[actualLine].Contains("" + cursor_Char) && outputText[actualLine].Length > lineIntro.Length + 1)
                     {
                         outputText[actualLine] = outputText[actualLine].Substring(0, outputText[actualLine].Length - 2) + cursor_Char;
                     }
-                    else if(!outputText[actualLine].Contains("" + cursor_Char))
+                    else if (!outputText[actualLine].Contains("" + cursor_Char))
                     {
                         outputText[actualLine] = outputText[actualLine].Substring(0, outputText[actualLine].Length - 1);
                     }
@@ -354,46 +347,21 @@ public class FakeTerminal : MonoBehaviour
                 if (logged)
                 {
 
-                    //If book answered
-                    if (!bookQuestionAnswered)
-                    {
-
-                        if (outputText[actualLine].Replace("" + cursor_Char, "").Length > 0
-                            && outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == correctBookName)
-                        {
-                            PrintTextForCorrectAnswer();
-                            bookQuestionAnswered = true;
-                            OnBookAuthenticated?.Invoke();
-                        }
-                    }
-
-
-                    //All done
-                    if (!mathFormulaAnswered)
-                    {
-                        if (outputText[actualLine].Replace("" + cursor_Char, "").Length > 0 &&
-                            outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == correctMathFormulaAnswer)
-                        {
-                            PrintTextForCorrectAnswer();
-                            mathFormulaAnswered = true;
-                            OnMathProblemAuthenticated?.Invoke();
-                        }
-
-                    }
-                }                                
+                    
+                }
 
 
                 if (!logged && admin_RequestLogin)
                 {
-                    if(text_ForceCapsLock)
+                    if (text_ForceCapsLock)
                     {
                         outputText[actualLine] = outputText[actualLine].ToUpper();
                     }
 
-                    if(outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == admin_Password)
+                    if (outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == admin_Password)
                     {
                         logged = true;
-                        PrintAccessGranted();                        
+                        PrintAccessGranted();
 
                     }
                     else
@@ -405,46 +373,46 @@ public class FakeTerminal : MonoBehaviour
                 {
                     bool printError = true;
 
-                    if(outputText[actualLine].Replace("" + cursor_Char, "").Length > lineIntro.Length)
-                    {                        
+                    if (outputText[actualLine].Replace("" + cursor_Char, "").Length > lineIntro.Length)
+                    {
                         //----//
 
                         // ADD HERE NEW CUSTOM COMMANDS
 
-                            // EXAMPLE:
+                        // EXAMPLE:
 
-                            // [...]
-                            //
-                            //  foreach(string input_Example in inputs_Example)
-                            //  {
-                            //      if(outputText[actualLine].Length >= lineIntro.Length)
-                            //      {
-                            //          if(outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == input_Example)
-                            //          {
-                            //              printError = false;
-                            //
-                            //              ADD CUSTOM ACTION TO EXECUTE WHEN PLAYER USES THIS COMMAND
-                            //
-                            //          }
-                            //      }
-                            //  }
-                            //
-                            //  [...]
+                        // [...]
+                        //
+                        //  foreach(string input_Example in inputs_Example)
+                        //  {
+                        //      if(outputText[actualLine].Length >= lineIntro.Length)
+                        //      {
+                        //          if(outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == input_Example)
+                        //          {
+                        //              printError = false;
+                        //
+                        //              ADD CUSTOM ACTION TO EXECUTE WHEN PLAYER USES THIS COMMAND
+                        //
+                        //          }
+                        //      }
+                        //  }
+                        //
+                        //  [...]
 
                         //----//
 
-                        for(int custom_InputsIndex = 0; custom_InputsIndex < custom_Inputs.Count; custom_InputsIndex++)
+                        for (int custom_InputsIndex = 0; custom_InputsIndex < custom_Inputs.Count; custom_InputsIndex++)
                         {
-                            foreach(string input_Text in custom_Inputs[custom_InputsIndex].text_Input)
+                            foreach (string input_Text in custom_Inputs[custom_InputsIndex].text_Input)
                             {
-                                if(outputText[actualLine].Length >= lineIntro.Length)
+                                if (outputText[actualLine].Length >= lineIntro.Length)
                                 {
-                                    if(outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == input_Text)
+                                    if (outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == input_Text)
                                     {
                                         printError = false;
                                         PrintCustomText(custom_InputsIndex);
-                        
-                                        custom_Functions[custom_InputsIndex]?.Invoke();
+
+                                        custom_Functions[custom_InputsIndex].Invoke();
                                     }
                                 }
                             }
@@ -466,11 +434,11 @@ public class FakeTerminal : MonoBehaviour
 
                         //----//
 
-                        foreach(string input_Clear in inputs_Clear)
+                        foreach (string input_Clear in inputs_Clear)
                         {
-                            if(outputText[actualLine].Length >= lineIntro.Length)
+                            if (outputText[actualLine].Length >= lineIntro.Length)
                             {
-                                if(outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == input_Clear)
+                                if (outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == input_Clear)
                                 {
                                     printError = false;
                                     outputText = new List<string>();
@@ -482,11 +450,11 @@ public class FakeTerminal : MonoBehaviour
                             }
                         }
 
-                        foreach(string input_Shutdown in inputs_Shutdown)
+                        foreach (string input_Shutdown in inputs_Shutdown)
                         {
-                            if(outputText[actualLine].Length >= lineIntro.Length)
+                            if (outputText[actualLine].Length >= lineIntro.Length)
                             {
-                                if(!key_UseKeyToShutDown && outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == input_Shutdown)
+                                if (!key_UseKeyToShutDown && outputText[actualLine].Replace("" + cursor_Char, "").Substring(lineIntro.Length) == input_Shutdown)
                                 {
                                     printError = false;
                                     ShutdownTerminal();
@@ -495,11 +463,11 @@ public class FakeTerminal : MonoBehaviour
                         }
 
                         PrintError(printError);
-                
+
                     }
                 }
 
-                if(!logged && admin_RequestLogin)
+                if (!logged && admin_RequestLogin)
                 {
                     lineIntro = "Insert password: ";
                     fakeLine = -1;
@@ -515,23 +483,23 @@ public class FakeTerminal : MonoBehaviour
             }
             else
             {
-                if(outputText[actualLine].Contains("" + cursor_Char))
+                if (outputText[actualLine].Contains("" + cursor_Char))
                 {
                     string temp = "";
-                    foreach(char letter in outputText[actualLine])
+                    foreach (char letter in outputText[actualLine])
                     {
-                        if(letter != cursor_Char)
-                        temp += letter;
+                        if (letter != cursor_Char)
+                            temp += letter;
                     }
 
-                    if(outputText[actualLine].Length < text_MaxCharsInString)
+                    if (outputText[actualLine].Length < text_MaxCharsInString)
                     {
                         outputText[actualLine] = temp + c + cursor_Char;
                     }
                 }
                 else
                 {
-                    if(outputText[actualLine].Length < text_MaxCharsInString)
+                    if (outputText[actualLine].Length < text_MaxCharsInString)
                     {
                         outputText[actualLine] += c;
                     }
@@ -548,7 +516,7 @@ public class FakeTerminal : MonoBehaviour
         outputText = new List<string>();
         fakeLine = 0;
 
-        foreach(string line in text_Intro)
+        foreach (string line in text_Intro)
         {
             outputText.Add(line);
             actualLine++;
@@ -558,16 +526,16 @@ public class FakeTerminal : MonoBehaviour
 
         AddLineToList("");
 
-        if(!logged && admin_RequestLogin)
+        if (!logged && admin_RequestLogin)
         {
             lineIntro = "Insert password (Best day of your life!): ";
         }
-        else if(logged && admin_RequestLogin)
+        else if (logged && admin_RequestLogin)
         {
             PrintAccessGranted();
             lineIntro = "" + fakeLine + ".  ";
         }
-        else if(!admin_RequestLogin)
+        else if (!admin_RequestLogin)
         {
             lineIntro = "" + fakeLine + ".  ";
         }
@@ -580,19 +548,19 @@ public class FakeTerminal : MonoBehaviour
     }
 
     IEnumerator TerminalIdlingCursor()
-    {   
-        while(terminalIsIdling)
+    {
+        while (terminalIsIdling)
         {
             outputText = new List<string>();
-            if(!terminalStarting)
+            if (!terminalStarting)
             {
-                if(!cursorVisible)
+                if (!cursorVisible)
                 {
                     outputText.Add("" + cursor_Char);
                     cursorVisible = true;
                 }
                 else
-                {  
+                {
                     cursorVisible = false;
                 }
             }
@@ -605,23 +573,23 @@ public class FakeTerminal : MonoBehaviour
 
     IEnumerator TerminalRunningCursor()
     {
-        while(terminalIsRunning)
+        while (terminalIsRunning)
         {
-            if(!terminalStarting)
+            if (!terminalStarting)
             {
-                if(!cursorVisible)
+                if (!cursorVisible)
                 {
                     bool cursorAlreadyExist = false;
 
-                    foreach(char letter in outputText[outputText.Count - 1])
+                    foreach (char letter in outputText[outputText.Count - 1])
                     {
-                        if(letter == cursor_Char)
+                        if (letter == cursor_Char)
                         {
                             cursorAlreadyExist = true;
                         }
                     }
 
-                    if(!cursorAlreadyExist)
+                    if (!cursorAlreadyExist)
                     {
                         outputText[outputText.Count - 1] += cursor_Char;
                     }
@@ -630,9 +598,9 @@ public class FakeTerminal : MonoBehaviour
                 else
                 {
                     string temp = "";
-                    foreach(char letter in outputText[outputText.Count - 1])
+                    foreach (char letter in outputText[outputText.Count - 1])
                     {
-                        if(letter != cursor_Char)
+                        if (letter != cursor_Char)
                         {
                             temp += letter;
                         }
@@ -651,7 +619,7 @@ public class FakeTerminal : MonoBehaviour
 
     private void UpdateLineIndex()
     {
-        if(actualLine + 1 <= text_MaxStringsOnScreen)
+        if (actualLine + 1 <= text_MaxStringsOnScreen)
         {
             actualLine++;
         }
@@ -662,9 +630,9 @@ public class FakeTerminal : MonoBehaviour
 
     private void PrintError(bool print)
     {
-        if(print)
+        if (print)
         {
-            foreach(string line in text_Error)
+            foreach (string line in text_Error)
             {
                 AddLineToList(line);
             }
@@ -696,28 +664,19 @@ public class FakeTerminal : MonoBehaviour
 
 
 
-    void PrintTextForCorrectAnswer()
-    {
-        foreach (var line in text_CorrectAnswer)
-        {
-            AddLineToList(line);
-        }
-    }
-
-
     private void PrintAccessGranted()
     {
-        foreach(string line in text_AccessGranted)
+        foreach (string line in text_AccessGranted)
         {
             AddLineToList(line);
         }
 
-        OnPasswordAuthenticated?.Invoke();
+ 
     }
 
     private void PrintAccessNegate()
     {
-        foreach(string line in text_AccessDenied)
+        foreach (string line in text_AccessDenied)
         {
             AddLineToList(line);
         }
@@ -725,12 +684,12 @@ public class FakeTerminal : MonoBehaviour
 
     private void PrintCustomText(int custom_Index)
     {
-        foreach(string line in custom_Texts[custom_Index].text_Input)
+        foreach (string line in custom_Texts[custom_Index].text_Input)
         {
             AddLineToList(line);
         }
     }
-    
+
     //----//
 
     public void AddLineToList(string newLine)
@@ -741,11 +700,11 @@ public class FakeTerminal : MonoBehaviour
 
     private void ScrollText()
     {
-        if(outputText.Count > text_MaxStringsOnScreen)
+        if (outputText.Count > text_MaxStringsOnScreen)
         {
             List<string> temp = new List<string>();
 
-            for(int i = 1; i < text_MaxStringsOnScreen + 1; i++)
+            for (int i = 1; i < text_MaxStringsOnScreen + 1; i++)
             {
                 temp.Add(outputText[i]);
             }
@@ -762,10 +721,10 @@ public class FakeTerminal : MonoBehaviour
 
         string textToPrint = "";
 
-        foreach(string line in lines)
+        foreach (string line in lines)
         {
             actualLine++;
-            if(text_ForceCapsLock)
+            if (text_ForceCapsLock)
             {
                 textToPrint += (line.ToUpper() + "\n");
             }
@@ -778,7 +737,7 @@ public class FakeTerminal : MonoBehaviour
         return textToPrint;
     }
 
-    [System.Serializable] 
+    [System.Serializable]
     public class CustomText
     {
         public string[] text_Input;

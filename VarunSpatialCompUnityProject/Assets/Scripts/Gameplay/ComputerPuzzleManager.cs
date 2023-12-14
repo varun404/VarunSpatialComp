@@ -23,7 +23,9 @@ public class ComputerPuzzleManager : MonoBehaviour
         foreach (string line in whatAfterPasswordAuthenticated)
         {
             fakeTerminal.AddLineToList(line);
-        }        
+        } 
+        
+        //Send info for 2nd clue
     }
 
 
@@ -35,6 +37,8 @@ public class ComputerPuzzleManager : MonoBehaviour
         {
             fakeTerminal.AddLineToList(line);
         }
+
+        //Send info for 2nd clue
     }
 
 
@@ -42,6 +46,7 @@ public class ComputerPuzzleManager : MonoBehaviour
     public string[] whatAfterMathProblemAuthenticated;
     void OnMathProblemAuthenticated()
     {
-        fakeTerminal.AddLineToList("Welcome Dr. Lusso!");
+        fakeTerminal.AddLineToList("Welcome Dr. Lusso! Unlocking main computer..");
+        //Send info for what to do after all clues are found.
     }
 }
