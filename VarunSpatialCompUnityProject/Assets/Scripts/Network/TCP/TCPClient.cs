@@ -12,7 +12,7 @@ public class TCPClient : MonoBehaviour
     private void Start()
     {
         // Example: Connect to server with IP address 127.0.0.1 (localhost) and port 5555
-        ConnectToServer("127.0.0.1", 5555);
+        ConnectToServer("172.26.50.230", 5555);
     }
 
     private void ConnectToServer(string ipAddress, int port)

@@ -17,7 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Final/Credits.unity
     guid: 13df2e5d12a840e4e8fb45d7ccd38621
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test/FakeTerminal.unity
     guid: c095a6ee4504dd64b8743881786edfda
+  - enabled: 1
+    path: Assets/Scenes/Test/MainComputerScene.unity
+    guid: d5c40dea11ac97843ab7881a211dee8b
   m_configObjects: {}

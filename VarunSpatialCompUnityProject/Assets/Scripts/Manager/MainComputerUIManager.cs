@@ -13,25 +13,26 @@ public class MainComputerUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UDPServer.OnReceivedUpdateFromClient += ProcessUpdate;
+        TCPServer.OnReceivedUpdateFromClient += ProcessUpdate;
     }
     
 
 
-    void ProcessUpdate(string updateFromClient)
+    public void ProcessUpdate(string updateFromClient)
     {
+        Debug.Log("Processing");
         switch (updateFromClient)
         {
             case "StartBook":
-                lock1Image.color = Color.green;
+                lock1Image.color = new Color(0, 1f, 0);
                 break;
 
             case "StartFormula":
-                lock2Image.color = Color.green;
+                lock2Image.color = new Color(0, 1, 0);
                 break;
 
             case "AllDone":
-                lock3Image.color = Color.green;
+                lock3Image.color = new Color(0, 1f, 0);
                 break;
 
             default:
