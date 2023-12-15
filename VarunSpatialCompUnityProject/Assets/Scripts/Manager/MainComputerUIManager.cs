@@ -17,7 +17,6 @@ public class MainComputerUIManager : MonoBehaviour
     void Start()
     {
         
-        TCPServer.OnReceivedUpdateFromClient += ProcessUpdate;
     }
 
 
@@ -30,11 +29,6 @@ public class MainComputerUIManager : MonoBehaviour
 
 
 
-    private void OnDisable()
-    {
-        TCPServer.OnReceivedUpdateFromClient -= ProcessUpdate;
-    }
-
     public void ProcessUpdate(string updateFromClient)
     {        
         switch (updateFromClient)
@@ -42,11 +36,13 @@ public class MainComputerUIManager : MonoBehaviour
             case "StartBook":
                 Debug.Log("Processing");
                 lock1Image.color = new Color(0, 1f, 0);
+                FindObjectOfType<PlayerHandHeldDevice>().ChangeDeviceTarget(2);
                 break;
 
             case "StartFormula":
                 Debug.Log("Processing");
                 lock2Image.color = new Color(0, 1, 0);
+                FindObjectOfType<PlayerHandHeldDevice>().ChangeDeviceTarget(3);
                 break;
 
             case "AllDone":

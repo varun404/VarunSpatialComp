@@ -35,8 +35,6 @@ public class PlayerHandHeldDevice : MonoBehaviour
     void Start()
     {
         GameConstants.playerGameObject = transform.gameObject;
-
-        TCPServer.OnReceivedUpdateFromClient += ReceivedUpdateFromClient;
     }
 
     // Update is called once per frame
@@ -52,7 +50,7 @@ public class PlayerHandHeldDevice : MonoBehaviour
 
     }
 
-    void ReceivedUpdateFromClient(string message)
+    public void ReceivedUpdateFromClient(string message)
     {
         switch (message)
         {

@@ -11,7 +11,7 @@ public class UDPClient : MonoBehaviour
     private void Start()
     {
         // Example: Start the UDP client and connect to the remote server
-        StartUDPClient("172.26.27.154", 5555);
+        StartUDPClient("172.24.16.76", 5555);
     }
 
     private void StartUDPClient(string ipAddress, int port)
@@ -37,7 +37,7 @@ public class UDPClient : MonoBehaviour
         udpClient.BeginReceive(ReceiveData, null);
     }
 
-    private void SendData(string message)
+    public void SendData(string message)
     {
         byte[] sendBytes = System.Text.Encoding.UTF8.GetBytes(message);
 

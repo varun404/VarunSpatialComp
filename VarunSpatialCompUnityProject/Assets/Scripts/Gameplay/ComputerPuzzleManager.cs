@@ -8,12 +8,24 @@ public class ComputerPuzzleManager : MonoBehaviour
     [SerializeField]
     FakeTerminal fakeTerminal;
 
+
+
+    [SerializeField]
+    MainComputerUIManager mainComputerUIManager;
+
+    //[SerializeField]
+    //TCPClient tcpClient;
+
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
         FakeTerminal.OnPasswordAuthenticated += OnPasswordAuthenticated;
         FakeTerminal.OnBookAuthenticated += OnBookAuthenticated;
         FakeTerminal.OnMathProblemAuthenticated += OnMathProblemAuthenticated;
+
+        yield return new WaitForSeconds(6);
+
+        FindObjectOfType<PlayerHandHeldDevice>().ChangeDeviceTarget(1);
     }
 
    
@@ -23,9 +35,12 @@ public class ComputerPuzzleManager : MonoBehaviour
         foreach (string line in whatAfterPasswordAuthenticated)
         {
             fakeTerminal.AddLineToList(line);
-        } 
-        
+        }
+
+        mainComputerUIManager.ProcessUpdate("StartBook");        
         //Send info for 2nd clue
+        //tcpClient.SendData("StartBook");
+
     }
 
 
@@ -38,7 +53,11 @@ public class ComputerPuzzleManager : MonoBehaviour
             fakeTerminal.AddLineToList(line);
         }
 
-        //Send info for 2nd clue
+
+        mainComputerUIManager.ProcessUpdate("StartFormula");
+        //Send info for 3rd clue
+        //tcpClient.SendData("StartFormula");
+
     }
 
 
@@ -47,6 +66,10 @@ public class ComputerPuzzleManager : MonoBehaviour
     void OnMathProblemAuthenticated()
     {
         fakeTerminal.AddLineToList("Welcome Dr. Lusso! Unlocking main computer..");
+
+        mainComputerUIManager.ProcessUpdate("AllDone");
+
         //Send info for what to do after all clues are found.
+        //tcpClient.SendData("AllDone");
     }
 }
