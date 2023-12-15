@@ -11,18 +11,20 @@ public class PlayerHandHeldDevice : MonoBehaviour
         Object1,
         Object2,
         Object3,
-        Tutorial
     }
 
     public static DeviceTargets currentDeviceTarget { get; private set; } = DeviceTargets.None;
 
 
     [SerializeField]
-    PlayerHandHeldDeviceTargets object1, object2;
+    PlayerHandHeldDeviceTargets object1, object2, object3;
 
 
     static PlayerHandHeldDevice currentTarget;
 
+
+    [SerializeField]
+    AudioManagerDistanceBased audioManagerDistanceBased;
 
 
     Vector3 currentTargetLocation;
@@ -33,6 +35,8 @@ public class PlayerHandHeldDevice : MonoBehaviour
     void Start()
     {
         GameConstants.playerGameObject = transform.gameObject;
+
+        TCPServer.OnReceivedUpdateFromClient += ReceivedUpdateFromClient;
     }
 
     // Update is called once per frame
@@ -48,44 +52,71 @@ public class PlayerHandHeldDevice : MonoBehaviour
 
     }
 
+    void ReceivedUpdateFromClient(string message)
+    {
+        switch (message)
+        {
+            case "StartPicture":
+                Debug.Log("Picture locating now");
+                ChangeDeviceTarget(1);
+                break;
+
+
+            case "StartBook":
+                Debug.Log("Book locating now");
+                ChangeDeviceTarget(2);
+                break;
+
+            case "StartFormula":
+                Debug.Log("Formula locating now");
+                ChangeDeviceTarget(3);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
+
 
     DeviceTargets tempTargetVar;
     public void ChangeDeviceTarget(int newDeviceTargetID)
     {
-        tempTargetVar = (DeviceTargets)newDeviceTargetID;
-
-        if (tempTargetVar == currentDeviceTarget)
-            return;
+       tempTargetVar = (DeviceTargets)newDeviceTargetID;        
 
         currentDeviceTarget = tempTargetVar;
-
-        FindObjectOfType<AudioManagerDistanceBased>().StopAudioBeepEffect();
 
         switch (currentDeviceTarget)
         {
             case DeviceTargets.None:
-                FindObjectOfType<AudioManagerDistanceBased>().StopAudioBeepEffect();                
-                break;                
-            case DeviceTargets.Tutorial:
-                //DistanceCalculator.targetPosition = tutorialObject.targetTransform.position;
-                //FindObjectOfType<AudioManagerDistanceBased>().StartAudioBeepEffect();
-                break;
+                audioManagerDistanceBased.StopAudioBeepEffect();                
+                break;      
+                
             case DeviceTargets.Object1:
                 DistanceCalculator.targetPosition = object1.targetTransform.position;
                 currentTargetLocation = DistanceCalculator.targetPosition;
-
-                FindObjectOfType<AudioManagerDistanceBased>().StartAudioBeepEffect();
+                audioManagerDistanceBased.StartAudioBeepEffect();
+                Debug.Log("Device target change");
                 break;
             case DeviceTargets.Object2:
                 DistanceCalculator.targetPosition = object2.targetTransform.position;
                 currentTargetLocation = DistanceCalculator.targetPosition;
-
-                FindObjectOfType<AudioManagerDistanceBased>().StartAudioBeepEffect();
+                audioManagerDistanceBased.StartAudioBeepEffect();
                 break;
             case DeviceTargets.Object3:
-                //DistanceCalculator.targetPosition = object3.targetTransform.position;
-                //FindObjectOfType<AudioManagerDistanceBased>().StartAudioBeepEffect();
+                DistanceCalculator.targetPosition = object3.targetTransform.position;
+                audioManagerDistanceBased.StartAudioBeepEffect();
                 break;                 
+        }
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("TargetSpot"))
+        {
+            ChangeDeviceTarget(0);
         }
     }
 }

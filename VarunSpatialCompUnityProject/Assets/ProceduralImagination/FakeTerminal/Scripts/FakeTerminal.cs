@@ -15,7 +15,7 @@ public class FakeTerminal : MonoBehaviour
     public string[] text_CorrectAnswer;
 
 
-
+    bool isTerminalEnabled;
 
 
     //public int custom_FunctionsNumber = 0;
@@ -209,6 +209,7 @@ public class FakeTerminal : MonoBehaviour
         StartCoroutine("TerminalIdlingCursor");
     }
 
+
     void LateUpdate()
     {
         if(admin_RequestLogin)
@@ -216,7 +217,8 @@ public class FakeTerminal : MonoBehaviour
             key_UseKeyToShutDown = true;
         }
 
-        if(Input.GetKeyDown(key_TurnOn) && (this.transform.position - player_Camera.transform.position).magnitude < terminal_MaxActivationDistance && terminalIsIdling)
+
+        if (Input.GetKeyDown(key_TurnOn) && (this.transform.position - player_Camera.transform.position).magnitude < terminal_MaxActivationDistance && terminalIsIdling)
         {
             StopCoroutine("TerminalIdlingCursor");
             StopCoroutine("ExitTerminalTransition");
@@ -268,6 +270,21 @@ public class FakeTerminal : MonoBehaviour
             ShutdownTerminal();
         }
     }
+
+
+
+
+    public void EnableTerminal()
+    {
+        isTerminalEnabled = true;
+    }
+
+
+
+
+
+
+
 
     //----//
 
