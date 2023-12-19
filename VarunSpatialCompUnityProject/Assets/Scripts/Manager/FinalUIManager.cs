@@ -1,29 +1,32 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class FinalUIManager : MonoBehaviour
 {
 
+
     [SerializeField]
-    GameObject player;
-
-    public static Action<GameConstants.GameState> GameStateChanged;
-
-
+    GameObject timeTravelUI;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameConstants.playerGameObject = player;
+        
     }
-
-
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+        
     }
+
+
+
+    public void DeleteTimeTravelFiles()
+    {
+        timeTravelUI.SetActive(false);
+    }
+    
 
 }

@@ -23,7 +23,7 @@ public class ComputerPuzzleManager : MonoBehaviour
         FakeTerminal.OnBookAuthenticated += OnBookAuthenticated;
         FakeTerminal.OnMathProblemAuthenticated += OnMathProblemAuthenticated;
 
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(8);
 
         FindObjectOfType<PlayerHandHeldDevice>().ChangeDeviceTarget(1);
     }
